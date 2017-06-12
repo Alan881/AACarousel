@@ -8,17 +8,50 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,AACarouselDelegate {
+    @IBOutlet weak var carouselView: AACarousel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+     
+        let pathArray = ["http://www.gettyimages.ca/gi-resources/images/Embed/new/embed2.jpg",
+                        "very-large-flamingo",
+                        "https://imgct2.aeplcdn.com/img/800x600/car-data/big/honda-amaze-image-12749.png",
+                        "http://www.conversion-uplift.co.uk/wp-content/uploads/2016/09/Lamborghini-Huracan-Image-672x372.jpg",
+                        "https://ak.picdn.net/assets/cms/97e1dd3f8a3ecb81356fe754a1a113f31b6dbfd4-stock-photo-photo-of-a-common-kingfisher-alcedo-atthis-adult-male-perched-on-a-lichen-covered-branch-107647640.jpg"]
+        
+        let titleArray = ["照片一","照片二","照片三","照片四","照片五"]
+        
+        carouselView.delegate = self
+        carouselView.defaultImage = "defaultImage"
+        carouselView.setCarouselData(paths: pathArray,  describeTitle: titleArray, isAutoScroll: true)
+        carouselView.timerInterval = 10.0
+    
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    //require method
+    func downloadImages(_ url: String, _ index:Int) {
+        
+        let imageView = UIImageView()
+        imageView.kf.setImage(with: URL(string: url)!, placeholder: nil, options: [.transition(.fade(0))], progressBlock: nil, completionHandler: { (downloadImage, error, cacheType, url) in
+            self.carouselView.images[index] = downloadImage!
+        })
+        
     }
-
+    
+    //optional method
+    func didSelectCarouselView(_ view:AACarousel ,_ currInex:Int) {
+        
+    }
+    
+    //optional method
+    func callBackFirstDisplayView(_ imageView: UIImageView, _ imageUrl: [String], _ currInex: Int) {
+        
+        imageView.kf.setImage(with: URL(string: imageUrl[currInex]), placeholder: nil, options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
+        
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
