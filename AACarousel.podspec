@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
  s.name = 'AACarousel'
  s.version = '1.0.0'
- s.license = 'MIT'
+ s.license = { :type => "MIT", :file => "LICENSE" }
  s.summary = 'Image Slider in Swift'
  s.homepage = 'https://github.com/Alan881/AACarousel'
  s.authors = { 'Alan' => 'nakama74@gmail.com' }
