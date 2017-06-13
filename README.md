@@ -55,8 +55,6 @@ The following smaple code for your reference.
     func downloadImages(_ url: String, _ index:Int) {
         
         //here is download images area
-        
-        })
-        
+ 
     }
 ```
