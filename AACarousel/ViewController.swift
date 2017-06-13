@@ -24,8 +24,9 @@ class ViewController: UIViewController,AACarouselDelegate {
         
         carouselView.delegate = self
         carouselView.defaultImage = "defaultImage"
+        carouselView.timerInterval = 5.0
         carouselView.setCarouselData(paths: pathArray,  describeTitle: titleArray, isAutoScroll: true)
-        carouselView.timerInterval = 10.0
+        
     
     }
     
