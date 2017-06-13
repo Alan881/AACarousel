@@ -8,7 +8,7 @@
 - [x] pure swift 3.1 code
 - [x] class is custom UIView , not UIPageViewController
 - [x] you can download image use iOS native SDK or other 3rd SDK 
-
+- [x] require iOS 8 or later
 
 ![](./sampleImage/imageSlider.gif)
 
