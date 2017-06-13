@@ -19,4 +19,4 @@
 
 AACarousel is available through [CocoaPods](http://cocoapods.org).
 
-    pod "SAHistoryNavigationViewController"
+    pod "AACarousel"
