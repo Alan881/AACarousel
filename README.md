@@ -23,4 +23,5 @@ AACarousel is available through [CocoaPods](http://cocoapods.org).
 
 # Usage
 
-
+You must creat UIView and use custom class in the storyboard after install AACarousel
+![](./sampleImage/customClass.png)
