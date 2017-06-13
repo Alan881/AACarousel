@@ -61,4 +61,4 @@ The following smaple code for your reference.
 
 # License
 
-AACarousel is available under the MIT license. See the LICENSE file for more info.
+AACarousel is available under the MIT license. 
