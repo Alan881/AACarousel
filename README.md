@@ -59,4 +59,4 @@ The following sample code for your reference.
 
 # License
 
-AACarousel is available under the MIT license. 
+AACarousel is available under the MIT license. See the LICENSE file for more info.
