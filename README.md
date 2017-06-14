@@ -53,7 +53,10 @@ The following sample code for your reference.
     func downloadImages(_ url: String, _ index:Int) {
         
         //here is download images area
-         imageView.kf.setImage(with: URL(string: imageUrl[currInex]), placeholder: nil, options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
+         let imageView = UIImageView()
+        imageView.kf.setImage(with: URL(string: url)!, placeholder: nil, options: [.transition(.fade(0))], progressBlock: nil, completionHandler: { (downloadImage, error, cacheType, url) in
+            self.carouselView.images[index] = downloadImage!
+        })
     }
 ```
 
