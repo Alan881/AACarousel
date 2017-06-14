@@ -44,9 +44,7 @@ The following sample code for your reference.
                         "https://ak.picdn.net/assets/cms/97e1dd3f8a3ecb81356fe754a1a113f31b6dbfd4-stock-photo-photo-of-a-common-kingfisher-alcedo-atthis-adult-male-perched-on-a-lichen-covered-branch-107647640.jpg"]
         let titleArray = ["picture 1","picture 2","picture 3","picture 4","picture 5"]
         carouselView.delegate = self
-        carouselView.defaultImage = "defaultImage"
-        carouselView.timerInterval = 5.0
-        carouselView.setCarouselData(paths: pathArray,  describeTitle: titleArray, isAutoScroll: true)
+        carouselView.setCarouselData(paths: pathArray,  describeTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
     }
 ```
 
