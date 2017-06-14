@@ -19,8 +19,6 @@ let needDownload = "http"
 class AACarousel: UIView,UIScrollViewDelegate {
     
     var delegate:AACarouselDelegate?
-    var timerInterval:Double?
-    var defaultImage:String?
     var images = [UIImage]()
     enum direction: Int {
         case left = -1, none, right
@@ -37,7 +35,8 @@ class AACarousel: UIView,UIScrollViewDelegate {
     private var currentIndex:NSInteger!
     private var describeString = [String]()
     private var timer:Timer?
-    
+    private var defaultImg:String?
+    private var timerInterval:Double?
     
     
     override init(frame: CGRect) {
@@ -149,7 +148,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
      
         //default image
         for _ in 0..<paths.count {
-            images.append(UIImage(named: defaultImage ?? "") ?? UIImage())
+            images.append(UIImage(named: defaultImg ?? "") ?? UIImage())
         }
         
         //get all image
@@ -173,7 +172,6 @@ class AACarousel: UIView,UIScrollViewDelegate {
         scrollView.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         scrollView.contentSize = CGSize.init(width: self.frame.size.width * 5, height:0)
         scrollView.contentOffset = CGPoint.init(x: self.frame.size.width * 2, y: 0)
-        
         
     }
     
@@ -210,12 +208,13 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     //MARK:- set data method
-    func setCarouselData(paths:[String],describeTitle:[String],isAutoScroll:Bool) {
+    func setCarouselData(paths:[String],describeTitle:[String],isAutoScroll:Bool,timer:Double?,defaultImage:String?) {
         
         if paths.count == 0 {
             return
         }
-        
+        timerInterval = timer
+        defaultImg = defaultImage
         initWithData(paths,describeTitle)
         setImage(paths, currentIndex)
         setLabel(describeTitle, currentIndex)
