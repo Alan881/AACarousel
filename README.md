@@ -27,11 +27,11 @@ You must create UIView and it use custom class in the storyboard after install A
 
 ![](./sampleImage/customClass.png)
 
-Then you’re also create IBOutlet in your UIViewController Class with AACarouselDelegate function.
+Then you must also create a IBOutlet in your UIViewController Class with AACarouselDelegate.
 
 ![](./sampleImage/IBOutlet.png)
 
-The following smaple code for your reference.
+The following sample code for your reference.
 
 ```swift
     override func viewDidLoad() {
