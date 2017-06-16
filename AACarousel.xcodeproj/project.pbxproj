@@ -130,7 +130,7 @@
 				TargetAttributes = {
 					E7BD5B591EED24420099D276 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2MRXT46WNF;
+						DevelopmentTeam = 2597VT3R93;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -347,7 +347,7 @@
 			baseConfigurationReference = 33268D856381BF7CA9E52598 /* Pods-AACarousel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2MRXT46WNF;
+				DEVELOPMENT_TEAM = 2597VT3R93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/Kingfisher",
@@ -366,7 +366,7 @@
 			baseConfigurationReference = 1F8BE8B1450D07C400ABF14A /* Pods-AACarousel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2MRXT46WNF;
+				DEVELOPMENT_TEAM = 2597VT3R93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/Kingfisher",

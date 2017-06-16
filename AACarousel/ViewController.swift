@@ -21,7 +21,9 @@ class ViewController: UIViewController,AACarouselDelegate {
                         "https://ak.picdn.net/assets/cms/97e1dd3f8a3ecb81356fe754a1a113f31b6dbfd4-stock-photo-photo-of-a-common-kingfisher-alcedo-atthis-adult-male-perched-on-a-lichen-covered-branch-107647640.jpg"]
         let titleArray = ["picture 1","picture 2","picture 3","picture 4","picture 5"]
         carouselView.delegate = self
-        carouselView.setCarouselData(paths: pathArray,  describeTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
+        carouselView.setCarouselData(paths: pathArray,  describedTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
+        carouselView.setCarouselShow(layer: false, describedTitle: false, pageIndicator: false)
+        carouselView.setCarouselLayout(pageIndicatorPositon: 4, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
     }
     
     //require method
@@ -42,7 +44,7 @@ class ViewController: UIViewController,AACarouselDelegate {
     //optional method
     func callBackFirstDisplayView(_ imageView: UIImageView, _ imageUrl: [String], _ currInex: Int) {
         
-        imageView.kf.setImage(with: URL(string: imageUrl[currInex]), placeholder: nil, options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
+        imageView.kf.setImage(with: URL(string: imageUrl[currInex]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
         
     }
     

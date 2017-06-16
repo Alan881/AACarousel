@@ -9,9 +9,9 @@
 import UIKit
 
 @objc protocol AACarouselDelegate {
-   @objc optional func didSelectCarouselView(_ view:AACarousel, _ currInex:Int)
-   @objc optional func callBackFirstDisplayView(_ imageView:UIImageView, _ imageUrl:[String], _ currInex:Int)
-   func downloadImages(_ url:String, _ index:Int)
+    @objc optional func didSelectCarouselView(_ view:AACarousel, _ currInex:Int)
+    @objc optional func callBackFirstDisplayView(_ imageView:UIImageView, _ imageUrl:[String], _ currInex:Int)
+    func downloadImages(_ url:String, _ index:Int)
 }
 
 let needDownload = "http"
@@ -23,10 +23,13 @@ class AACarousel: UIView,UIScrollViewDelegate {
     enum direction: Int {
         case left = -1, none, right
     }
+    enum pageControlPosition:Int {
+        case top = 0, center = 1, bottom = 2, topLeft = 3, bottomLeft = 4, topRight = 5, bottomRight = 6
+    }
     
     //MARK:- private property
     private var scrollView:UIScrollView!
-    private var describeLabel:UILabel!
+    private var describedLabel:UILabel!
     private var layerView:UIView!
     private var pageControl:UIPageControl!
     private var beforeImageView:UIImageView!
@@ -37,7 +40,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     private var timer:Timer?
     private var defaultImg:String?
     private var timerInterval:Double?
-    
+    private var indicatorPosition:pageControlPosition = pageControlPosition.bottom
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +63,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
         setLayerViewFrame()
         setLabelFrame()
         setPageControlFrame()
+        
         
     }
     
@@ -98,14 +102,20 @@ class AACarousel: UIView,UIScrollViewDelegate {
     fileprivate func initWithLayerView() {
         
         layerView = UIView()
+        layerView.backgroundColor = UIColor.black
+        layerView.alpha = 0.7
         addSubview(layerView)
     }
     
     
     fileprivate func initWithLabel() {
         
-        describeLabel = UILabel()
-        layerView.addSubview(describeLabel)
+        describedLabel = UILabel()
+        describedLabel.textAlignment = NSTextAlignment.left
+        describedLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        describedLabel.numberOfLines = 2
+        describedLabel.textColor = UIColor.white
+        layerView.addSubview(describedLabel)
     }
     
     fileprivate func initWithPageControl() {
@@ -138,9 +148,10 @@ class AACarousel: UIView,UIScrollViewDelegate {
         
         let singleFinger = UITapGestureRecognizer(target:self, action:#selector(didSelectImageView))
         addGestureRecognizer(singleFinger)
+        
     }
     
-    fileprivate func initWithData(_ paths:[String],_ describeTitle:[String]) {
+    fileprivate func initWithData(_ paths:[String],_ describedTitle:[String]) {
         
         currentIndex = 0
         images.removeAll()
@@ -161,7 +172,14 @@ class AACarousel: UIView,UIScrollViewDelegate {
         }
         
         //get all describeString
-        describeString = describeTitle
+        var copyDescribedTitle:[String] = describedTitle
+        if describedTitle.count < paths.count {
+            let count = paths.count - describedTitle.count
+            for _ in 0..<count {
+                copyDescribedTitle.append("")
+            }
+        }
+        describeString = copyDescribedTitle
     }
     
     
@@ -178,8 +196,6 @@ class AACarousel: UIView,UIScrollViewDelegate {
     fileprivate func setLayerViewFrame() {
         
         layerView.frame = CGRect.init(x:0 , y: scrollView.frame.size.height - 80, width: scrollView.frame.size.width, height: 80)
-        layerView.backgroundColor = UIColor.black
-        layerView.alpha = 0.7
         layerView.isUserInteractionEnabled = false
     }
     
@@ -192,32 +208,68 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     fileprivate func setLabelFrame() {
         
-        describeLabel.frame = CGRect.init(x:10 , y: layerView.frame.size.height - 75, width: scrollView.frame.size.width - 20, height: 70)
-        describeLabel.textAlignment = NSTextAlignment.left
-        describeLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        describeLabel.numberOfLines = 2
-        describeLabel.textColor = UIColor.white
+        describedLabel.frame = CGRect.init(x:10 , y: layerView.frame.size.height - 75, width: scrollView.frame.size.width - 20, height: 70)
+        
     }
     
     
     fileprivate func setPageControlFrame() {
         
-        pageControl.frame = CGRect.init(x:50 , y: scrollView.frame.size.height - 5, width: scrollView.frame.size.width - 100, height: 5)
-        pageControl.center = CGPoint.init(x: scrollView.frame.size.width / 2, y: scrollView.frame.size.height - 10)
-        
+        switch indicatorPosition {
+        case .top:
+            pageControl.center = CGPoint.init(x: scrollView.frame.size.width / 2, y: 10)
+            break
+        case .center:
+            pageControl.center = CGPoint.init(x: scrollView.frame.size.width / 2, y: scrollView.frame.size.height / 2)
+            break
+        case .topLeft:
+            pageControl.frame = CGRect.init(x: 8 * images.count, y: 5, width: 0, height: 10)
+            break
+        case .bottomLeft:
+            pageControl.frame = CGRect.init(x: 8 * images.count, y: Int(scrollView.frame.size.height - 10), width: 0, height: 0)
+            break
+        case .topRight:
+            pageControl.frame = CGRect.init(x: Int(scrollView.frame.size.width) - 8 * images.count, y: 5, width: 0, height: 10)
+            break
+        case .bottomRight:
+            pageControl.frame = CGRect.init(x: Int(scrollView.frame.size.width) - 8 * images.count, y: Int(scrollView.frame.size.height - 10), width: 0, height: 0)
+            break
+        default:
+            pageControl.center = CGPoint.init(x: scrollView.frame.size.width / 2, y: scrollView.frame.size.height - 10)
+            break
+        }
     }
     
+    //MARK:- set subviews layout method
+    func setCarouselLayout(pageIndicatorPositon:Int, pageIndicatorColor:UIColor?, describedTitleColor:UIColor?, layerColor:UIColor?) {
+        
+        indicatorPosition = pageControlPosition.init(rawValue: pageIndicatorPositon) ?? .bottom
+        pageControl.currentPageIndicatorTintColor = pageIndicatorColor ?? .white
+        describedLabel.textColor = describedTitleColor ?? .white
+        layerView.backgroundColor = layerColor ?? .black
+        layoutIfNeeded()
+    }
+    
+    //MARK:- set subviews show method
+    func setCarouselShow(layer:Bool, describedTitle:Bool, pageIndicator:Bool) {
+        
+        layerView.isHidden = layer
+        describedLabel.isHidden = describedTitle
+        pageControl.isHidden = pageIndicator
+    }
+    
+    
     //MARK:- set data method
-    func setCarouselData(paths:[String],describeTitle:[String],isAutoScroll:Bool,timer:Double?,defaultImage:String?) {
+    func setCarouselData(paths:[String],describedTitle:[String],isAutoScroll:Bool,timer:Double?,defaultImage:String?) {
         
         if paths.count == 0 {
             return
         }
         timerInterval = timer
         defaultImg = defaultImage
-        initWithData(paths,describeTitle)
+        initWithData(paths,describedTitle)
         setImage(paths, currentIndex)
-        setLabel(describeTitle, currentIndex)
+        setLabel(describedTitle, currentIndex)
         setScrollEnabled(paths, isAutoScroll)
     }
     
@@ -259,7 +311,6 @@ class AACarousel: UIView,UIScrollViewDelegate {
         }
         pageControl.numberOfPages = imageUrl.count
         pageControl.currentPage = currentIndex
-        
         layoutSubviews()
         
     }
@@ -281,7 +332,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
             return
         }
         
-        describeLabel.text = describeTitle[curIndex]
+        describedLabel.text = describeTitle[curIndex]
     }
     
     //MARK:- change display view
@@ -321,7 +372,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
             break
         }
         //chage Label
-        describeLabel.text = describeString[currentIndex]
+        describedLabel.text = describeString[currentIndex]
         scrollView.contentOffset = CGPoint.init(x: frame.size.width * 2, y: 0)
         
     }
@@ -386,6 +437,16 @@ class AACarousel: UIView,UIScrollViewDelegate {
         
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        stopAutoScroll()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        startAutoScroll()
+    }
+    
     //MARK:- handle current index
     fileprivate func handleIndex(_ scrollDirect:direction) {
         
@@ -414,6 +475,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
         delegate?.downloadImages(url, index)
     }
     
+    
     //MARK:- public control method
     func startScrollImageView() {
         
@@ -425,6 +487,6 @@ class AACarousel: UIView,UIScrollViewDelegate {
         stopAutoScroll()
     }
     
-   
+    
     
 }
