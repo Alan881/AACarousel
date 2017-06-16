@@ -45,6 +45,7 @@ The following sample code for your reference.
         let titleArray = ["picture 1","picture 2","picture 3","picture 4","picture 5"]
         carouselView.delegate = self
         carouselView.setCarouselData(paths: pathArray,  describedTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
+        //optional methods
         carouselView.setCarouselShow(layer: false, describedTitle: false, pageIndicator: false)
         carouselView.setCarouselLayout(pageIndicatorPositon: 4, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
     }
