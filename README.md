@@ -63,6 +63,37 @@ The following sample code for your reference.
     }
 ```
 
+```swift
+    //optional method (interaction for touch image)
+    func didSelectCarouselView(_ view:AACarousel ,_ currInex:Int) {
+        
+        let alert = UIAlertView.init(title:"Alert" , message: titleArray[currInex], delegate: self, cancelButtonTitle: "OK")
+        alert.show()
+        
+        //startAutoScroll()
+        //stopAutoScroll()
+    }
+    
+    //optional method (show first image faster during downloading of all images)
+    func callBackFirstDisplayView(_ imageView: UIImageView, _ imageUrl: [String], _ currInex: Int) {
+        
+        imageView.kf.setImage(with: URL(string: imageUrl[currInex]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
+        
+    }
+    
+    func startAutoScroll() {
+       //optional method
+       carouselView.startScrollImageView()
+        
+    }
+    
+    func stopAutoScroll() {
+        //optional method
+        carouselView.stopScrollImageView()
+    }
+
+```
+
 # License
 
 AACarousel is available under the MIT license. See the LICENSE file for more info.
