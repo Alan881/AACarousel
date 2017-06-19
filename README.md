@@ -57,7 +57,7 @@ The following sample code for your reference.
         
         //here is download images area
          let imageView = UIImageView()
-        imageView.kf.setImage(with: URL(string: url)!, placeholder: nil, options: [.transition(.fade(0))], progressBlock: nil, completionHandler: { (downloadImage, error, cacheType, url) in
+        imageView.kf.setImage(with: URL(string: url)!, placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(0))], progressBlock: nil, completionHandler: { (downloadImage, error, cacheType, url) in
             self.carouselView.images[index] = downloadImage!
         })
     }
