@@ -23,8 +23,8 @@ class ViewController: UIViewController,AACarouselDelegate {
         titleArray = ["picture 1","picture 2","picture 3","picture 4","picture 5"]
         carouselView.delegate = self
         carouselView.setCarouselData(paths: pathArray,  describedTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
-        carouselView.setCarouselShow(layer: false, describedTitle: false, pageIndicator: false)
-        carouselView.setCarouselLayout(pageIndicatorPositon: 4, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
+        carouselView.setCarouselOpaque(layer: false, describedTitle: false, pageIndicator: false)
+        carouselView.setCarouselLayout(displayStyle: 1, pageIndicatorPositon: 5, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
     }
     
     //require method
@@ -38,9 +38,9 @@ class ViewController: UIViewController,AACarouselDelegate {
     }
     
     //optional method (interaction for touch image)
-    func didSelectCarouselView(_ view:AACarousel ,_ currInex:Int) {
+    func didSelectCarouselView(_ view:AACarousel ,_ index:Int) {
         
-        let alert = UIAlertView.init(title:"Alert" , message: titleArray[currInex], delegate: self, cancelButtonTitle: "OK")
+        let alert = UIAlertView.init(title:"Alert" , message: titleArray[index], delegate: self, cancelButtonTitle: "OK")
         alert.show()
         
         //startAutoScroll()
@@ -48,9 +48,9 @@ class ViewController: UIViewController,AACarouselDelegate {
     }
     
     //optional method (show first image faster during downloading of all images)
-    func callBackFirstDisplayView(_ imageView: UIImageView, _ imageUrl: [String], _ currInex: Int) {
+    func callBackFirstDisplayView(_ imageView: UIImageView, _ url: [String], _ index: Int) {
         
-        imageView.kf.setImage(with: URL(string: imageUrl[currInex]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
+        imageView.kf.setImage(with: URL(string: url[index]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
         
     }
     

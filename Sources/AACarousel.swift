@@ -9,8 +9,8 @@
 import UIKit
 
 @objc protocol AACarouselDelegate {
-    @objc optional func didSelectCarouselView(_ view:AACarousel, _ currInex:Int)
-    @objc optional func callBackFirstDisplayView(_ imageView:UIImageView, _ imageUrl:[String], _ currInex:Int)
+    @objc optional func didSelectCarouselView(_ view:AACarousel, _ index:Int)
+    @objc optional func callBackFirstDisplayView(_ imageView:UIImageView, _ url:[String], _ index:Int)
     func downloadImages(_ url:String, _ index:Int)
 }
 
@@ -26,7 +26,9 @@ class AACarousel: UIView,UIScrollViewDelegate {
     enum pageControlPosition:Int {
         case top = 0, center = 1, bottom = 2, topLeft = 3, bottomLeft = 4, topRight = 5, bottomRight = 6
     }
-    
+    enum displayModel:Int {
+        case full = 0, halfFull = 1
+    }
     //MARK:- private property
     private var scrollView:UIScrollView!
     private var describedLabel:UILabel!
@@ -36,11 +38,12 @@ class AACarousel: UIView,UIScrollViewDelegate {
     private var currentImageView:UIImageView!
     private var afterImageView:UIImageView!
     private var currentIndex:NSInteger!
-    private var describeString = [String]()
+    private var describedString = [String]()
     private var timer:Timer?
     private var defaultImg:String?
     private var timerInterval:Double?
     private var indicatorPosition:pageControlPosition = pageControlPosition.bottom
+    private var carouselMode:displayModel = displayModel.full
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -103,8 +106,8 @@ class AACarousel: UIView,UIScrollViewDelegate {
         
         layerView = UIView()
         layerView.backgroundColor = UIColor.black
-        layerView.alpha = 0.7
-        addSubview(layerView)
+        layerView.alpha = 0.6
+        scrollView.addSubview(layerView)
     }
     
     
@@ -179,7 +182,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
                 copyDescribedTitle.append("")
             }
         }
-        describeString = copyDescribedTitle
+        describedString = copyDescribedTitle
     }
     
     
@@ -187,33 +190,43 @@ class AACarousel: UIView,UIScrollViewDelegate {
     fileprivate func setScrollViewFrame() {
         
         scrollView.contentInset = UIEdgeInsets.zero
-        scrollView.frame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-        scrollView.contentSize = CGSize.init(width: self.frame.size.width * 5, height:0)
-        scrollView.contentOffset = CGPoint.init(x: self.frame.size.width * 2, y: 0)
+        scrollView.frame = CGRect.init(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+        scrollView.contentSize = CGSize.init(width: frame.size.width * 5, height:0)
+        scrollView.contentOffset = CGPoint.init(x: frame.size.width * 2, y: 0)
         
     }
     
     fileprivate func setLayerViewFrame() {
         
-        layerView.frame = CGRect.init(x:0 , y: scrollView.frame.size.height - 80, width: scrollView.frame.size.width, height: 80)
+        layerView.frame = CGRect.init(x: 0 , y: scrollView.frame.size.height - 80, width: scrollView.frame.size.width * 5, height: 80)
         layerView.isUserInteractionEnabled = false
     }
     
     fileprivate func setImageViewFrame() {
         
-        beforeImageView.frame = CGRect.init(x:scrollView.frame.size.width , y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
-        currentImageView.frame = CGRect.init(x:scrollView.frame.size.width * 2 , y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
-        afterImageView.frame = CGRect.init(x:scrollView.frame.size.width * 3 , y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+        switch carouselMode {
+        case .full:
+            beforeImageView.frame = CGRect.init(x: scrollView.frame.size.width, y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+            currentImageView.frame = CGRect.init(x: scrollView.frame.size.width * 2, y: 0, width: scrollView.frame.size.width , height: scrollView.frame.size.height)
+            afterImageView.frame = CGRect.init(x: scrollView.frame.size.width * 3, y: 0, width: scrollView.frame.size.width, height: scrollView.frame.size.height)
+            break
+        case .halfFull:
+            handleHalfFullImageViewFrame(false)
+            beforeImageView.alpha = 0.6
+            afterImageView.alpha = 0.6
+            break
+        }
     }
     
     fileprivate func setLabelFrame() {
         
-        describedLabel.frame = CGRect.init(x:10 , y: layerView.frame.size.height - 75, width: scrollView.frame.size.width - 20, height: 70)
+        describedLabel.frame = CGRect.init(x: scrollView.frame.size.width * 2 + 10 , y: layerView.frame.size.height - 75, width: scrollView.frame.size.width - 20, height: 70)
         
     }
     
     
     fileprivate func setPageControlFrame() {
+        
         
         switch indicatorPosition {
         case .top:
@@ -241,8 +254,9 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     //MARK:- set subviews layout method
-    func setCarouselLayout(pageIndicatorPositon:Int, pageIndicatorColor:UIColor?, describedTitleColor:UIColor?, layerColor:UIColor?) {
+    func setCarouselLayout(displayStyle:Int, pageIndicatorPositon:Int, pageIndicatorColor:UIColor?, describedTitleColor:UIColor?, layerColor:UIColor?) {
         
+        carouselMode = displayModel.init(rawValue: displayStyle) ?? .full
         indicatorPosition = pageControlPosition.init(rawValue: pageIndicatorPositon) ?? .bottom
         pageControl.currentPageIndicatorTintColor = pageIndicatorColor ?? .white
         describedLabel.textColor = describedTitleColor ?? .white
@@ -251,7 +265,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     //MARK:- set subviews show method
-    func setCarouselShow(layer:Bool, describedTitle:Bool, pageIndicator:Bool) {
+    func setCarouselOpaque(layer:Bool, describedTitle:Bool, pageIndicator:Bool) {
         
         layerView.isHidden = layer
         describedLabel.isHidden = describedTitle
@@ -326,13 +340,13 @@ class AACarousel: UIView,UIScrollViewDelegate {
         }
     }
     
-    fileprivate func setLabel(_ describeTitle:[String], _ curIndex:NSInteger) {
+    fileprivate func setLabel(_ describedTitle:[String], _ curIndex:NSInteger) {
         
-        if describeTitle.count == 0 {
+        if describedTitle.count == 0 {
             return
         }
         
-        describedLabel.text = describeTitle[curIndex]
+        describedLabel.text = describedTitle[curIndex]
     }
     
     //MARK:- change display view
@@ -372,9 +386,20 @@ class AACarousel: UIView,UIScrollViewDelegate {
             break
         }
         //chage Label
-        describedLabel.text = describeString[currentIndex]
-        scrollView.contentOffset = CGPoint.init(x: frame.size.width * 2, y: 0)
+        describedLabel.text = describedString[currentIndex]
         
+        switch carouselMode {
+        case .full:
+            break
+        case .halfFull:
+            UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveEaseInOut, animations: {
+                self.handleHalfFullImageViewFrame(false)
+            }, completion: nil)
+            
+            break
+        }
+        
+        scrollView.contentOffset = CGPoint.init(x: frame.size.width * 2, y: 0)
     }
     
     //MARK:- set auto scroll
@@ -393,12 +418,28 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     @objc fileprivate func autoScrollToNextImageView() {
         
+        switch carouselMode {
+        case .full:
+            break
+        case .halfFull:
+            handleHalfFullImageViewFrame(true)
+            break
+        }
         scrollView.setContentOffset(CGPoint.init(x: frame.size.width * 3, y: 0), animated: true)
+        
     }
     
     @objc fileprivate func autoScrollToBeforeImageView() {
         
+        switch carouselMode {
+        case .full:
+            break
+        case .halfFull:
+            handleHalfFullImageViewFrame(true)
+            break
+        }
         scrollView.setContentOffset(CGPoint.init(x: frame.size.width * 1, y: 0), animated: true)
+        
     }
     
     
@@ -415,7 +456,6 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     
     //MARK:- UIScrollViewDelegate
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if images.count == 0  {
@@ -439,12 +479,39 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
+        switch carouselMode {
+        case .full:
+            break
+        case .halfFull:
+            handleHalfFullImageViewFrame(true)
+            break
+        }
         stopAutoScroll()
     }
+    
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         startAutoScroll()
+        
+    }
+    
+    //MARK:- handle scroll imageview frame
+    fileprivate func handleHalfFullImageViewFrame(_ isScroll:Bool) {
+        
+        switch isScroll {
+        case true:
+            beforeImageView.frame = CGRect.init(x: scrollView.frame.size.width + 30, y: 0, width: scrollView.frame.size.width - 60, height: scrollView.frame.size.height)
+            afterImageView.frame = CGRect.init(x: scrollView.frame.size.width * 3 + 30, y: 0, width: scrollView.frame.size.width - 60, height: scrollView.frame.size.height)
+            break
+        default:
+            beforeImageView.frame = CGRect.init(x: scrollView.frame.size.width + 80, y: 20, width: scrollView.frame.size.width - 60, height: scrollView.frame.size.height - 60)
+            currentImageView.frame = CGRect.init(x: scrollView.frame.size.width * 2 + 30, y: 0, width: scrollView.frame.size.width - 60, height: scrollView.frame.size.height)
+            afterImageView.frame = CGRect.init(x: scrollView.frame.size.width * 3 - 20, y: 20, width: scrollView.frame.size.width - 60, height: scrollView.frame.size.height - 60)
+            break
+        }
+        
+        
     }
     
     //MARK:- handle current index
