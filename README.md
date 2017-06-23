@@ -29,7 +29,7 @@ Simply add AACarousel to your `Podfile`.
 pod 'AACarousel'
 
 ```
-Enter command instruction into your terminal
+Enter command instruction into your terminal.
 
 ```
 pod install
