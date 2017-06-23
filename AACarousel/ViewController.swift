@@ -24,7 +24,7 @@ class ViewController: UIViewController,AACarouselDelegate {
         carouselView.delegate = self
         carouselView.setCarouselData(paths: pathArray,  describedTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
         carouselView.setCarouselOpaque(layer: false, describedTitle: false, pageIndicator: false)
-        carouselView.setCarouselLayout(displayStyle: 1, pageIndicatorPositon: 5, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
+        carouselView.setCarouselLayout(displayStyle: 0, pageIndicatorPositon: 5, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
     }
     
     //require method
