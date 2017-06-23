@@ -10,9 +10,11 @@
 - [x] you can download image use iOS native SDK or other 3rd SDK 
 - [x] require iOS 8 or later
 
-#### style one
+#### Style One
+
 ![](./sampleImage/imageSlider.gif)
-#### style two
+#### Style Two
+
 ![](./sampleImage/halfImageSlider.gif)
 
 # Installation
