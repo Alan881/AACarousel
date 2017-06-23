@@ -23,7 +23,18 @@
 
 AACarousel is available through [CocoaPods](http://cocoapods.org).
 
-    pod 'AACarousel'
+Simply add AACarousel to your `Podfile`.
+
+```
+pod 'AACarousel'
+
+```
+Enter command instruction into your terminal
+
+```
+pod install
+
+```
 
 # Usage
 
