@@ -23,8 +23,9 @@ class ViewController: UIViewController,AACarouselDelegate {
         titleArray = ["picture 1","picture 2","picture 3","picture 4","picture 5"]
         carouselView.delegate = self
         carouselView.setCarouselData(paths: pathArray,  describedTitle: titleArray, isAutoScroll: true, timer: 5.0, defaultImage: "defaultImage")
+        //optional method
         carouselView.setCarouselOpaque(layer: false, describedTitle: false, pageIndicator: false)
-        carouselView.setCarouselLayout(displayStyle: 0, pageIndicatorPositon: 5, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
+        carouselView.setCarouselLayout(displayStyle: 0, pageIndicatorPositon: 2, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
     }
     
     //require method
