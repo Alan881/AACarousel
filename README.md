@@ -67,9 +67,9 @@ The following sample code for your reference.
 
 ```swift
     //optional method (interaction for touch image)
-    func didSelectCarouselView(_ view:AACarousel ,_ currInex:Int) {
+    func didSelectCarouselView(_ view:AACarousel ,_ index:Int) {
         
-        let alert = UIAlertView.init(title:"Alert" , message: titleArray[currInex], delegate: self, cancelButtonTitle: "OK")
+        let alert = UIAlertView.init(title:"Alert" , message: titleArray[index], delegate: self, cancelButtonTitle: "OK")
         alert.show()
         
         //startAutoScroll()
