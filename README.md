@@ -77,7 +77,7 @@ The following sample code for your reference.
     }
     
     //optional method (show first image faster during downloading of all images)
-    func callBackFirstDisplayView(_ imageView: UIImageView, _ url: [String], _ index: Int) {
+    func callBackFirstDisplayView(_ imageView: UIImageView, _ url: [String], _ index:Int) {
         
         imageView.kf.setImage(with: URL(string: url[index]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
         
