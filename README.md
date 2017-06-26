@@ -27,13 +27,11 @@ Simply add AACarousel to your `Podfile`.
 
 ```
 pod 'AACarousel'
-
 ```
 Enter command instruction into your terminal.
 
 ```
 pod install
-
 ```
 
 # Usage
@@ -70,7 +68,7 @@ The following sample code for your reference.
 
 ```swift
     //require method
-    func downloadImages(_ url: String, _ index:Int) {
+    func downloadImages(_ url: String, _ index: Int) {
         
         //here is download images area
          let imageView = UIImageView()
@@ -82,7 +80,7 @@ The following sample code for your reference.
 
 ```swift
     //optional method (interaction for touch image)
-    func didSelectCarouselView(_ view:AACarousel ,_ index:Int) {
+    func didSelectCarouselView(_ view: AACarousel ,_ index: Int) {
         
         let alert = UIAlertView.init(title:"Alert" , message: titleArray[index], delegate: self, cancelButtonTitle: "OK")
         alert.show()
@@ -92,7 +90,7 @@ The following sample code for your reference.
     }
     
     //optional method (show first image faster during downloading of all images)
-    func callBackFirstDisplayView(_ imageView: UIImageView, _ url: [String], _ index:Int) {
+    func callBackFirstDisplayView(_ imageView: UIImageView, _ url: [String], _ index: Int) {
         
         imageView.kf.setImage(with: URL(string: url[index]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
         
