@@ -261,7 +261,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
         pageControl.currentPageIndicatorTintColor = pageIndicatorColor ?? .white
         describedLabel.textColor = describedTitleColor ?? .white
         layerView.backgroundColor = layerColor ?? .black
-        layoutIfNeeded()
+        setNeedsLayout()
     }
     
     //MARK:- set subviews show method
