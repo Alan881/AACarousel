@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E71F97FC1F1E567200D263F1"
-               BuildableName = "AACarouselCarthage.framework"
+               BuildableName = "AACarousel.framework"
                BlueprintName = "AACarouselCarthage"
                ReferencedContainer = "container:AACarousel.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E71F97FC1F1E567200D263F1"
-            BuildableName = "AACarouselCarthage.framework"
+            BuildableName = "AACarousel.framework"
             BlueprintName = "AACarouselCarthage"
             ReferencedContainer = "container:AACarousel.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E71F97FC1F1E567200D263F1"
-            BuildableName = "AACarouselCarthage.framework"
+            BuildableName = "AACarousel.framework"
             BlueprintName = "AACarouselCarthage"
             ReferencedContainer = "container:AACarousel.xcodeproj">
          </BuildableReference>
