@@ -33,6 +33,20 @@ Enter command instruction into your terminal.
 ```
 pod install
 ```
+#### Carthage
+
+AACarousel is available through [Carthage](https://github.com/Carthage/Carthage).
+
+Simply add AACarousel to your `Cartfile`.
+
+```
+github "Alan881/AACarousel"
+```
+Enter command instruction into your terminal.
+
+```
+carthage update
+```
 
 # Usage
 
