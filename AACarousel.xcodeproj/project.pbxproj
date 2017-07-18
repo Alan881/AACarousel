@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8DD157D7235AE2B39CB313B0 /* Pods_AACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D9E4281DE327A4E4090A74 /* Pods_AACarousel.framework */; };
+		E71F98011F1E567200D263F1 /* AACarouselCarthage.h in Headers */ = {isa = PBXBuildFile; fileRef = E71F97FF1F1E567200D263F1 /* AACarouselCarthage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E71F98041F1E567200D263F1 /* AACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F97FD1F1E567200D263F1 /* AACarousel.framework */; };
+		E71F98051F1E567200D263F1 /* AACarousel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E71F97FD1F1E567200D263F1 /* AACarousel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E71F980A1F1E567D00D263F1 /* AACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD9FBC1EED3FBD00A57E46 /* AACarousel.swift */; };
 		E7BD5B5E1EED24420099D276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BD5B5D1EED24420099D276 /* AppDelegate.swift */; };
 		E7BD5B601EED24420099D276 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BD5B5F1EED24420099D276 /* ViewController.swift */; };
 		E7BD5B631EED24420099D276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BD5B611EED24420099D276 /* Main.storyboard */; };
@@ -16,10 +20,37 @@
 		E7CD9FBD1EED3FBD00A57E46 /* AACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD9FBC1EED3FBD00A57E46 /* AACarousel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E71F98021F1E567200D263F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7BD5B521EED24420099D276 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E71F97FC1F1E567200D263F1;
+			remoteInfo = AACarouselCarthage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E71F98091F1E567200D263F1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E71F98051F1E567200D263F1 /* AACarousel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1F8BE8B1450D07C400ABF14A /* Pods-AACarousel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AACarousel.release.xcconfig"; path = "Pods/Target Support Files/Pods-AACarousel/Pods-AACarousel.release.xcconfig"; sourceTree = "<group>"; };
 		33268D856381BF7CA9E52598 /* Pods-AACarousel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AACarousel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AACarousel/Pods-AACarousel.debug.xcconfig"; sourceTree = "<group>"; };
 		C3D9E4281DE327A4E4090A74 /* Pods_AACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E71F97FD1F1E567200D263F1 /* AACarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AACarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E71F97FF1F1E567200D263F1 /* AACarouselCarthage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AACarouselCarthage.h; sourceTree = "<group>"; };
+		E71F98001F1E567200D263F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7BD5B5A1EED24420099D276 /* AACarousel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AACarousel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BD5B5D1EED24420099D276 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7BD5B5F1EED24420099D276 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,11 +64,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E71F97F91F1E567200D263F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7BD5B571EED24420099D276 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8DD157D7235AE2B39CB313B0 /* Pods_AACarousel.framework in Frameworks */,
+				E71F98041F1E567200D263F1 /* AACarousel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,10 +102,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E71F97FE1F1E567200D263F1 /* AACarouselCarthage */ = {
+			isa = PBXGroup;
+			children = (
+				E71F97FF1F1E567200D263F1 /* AACarouselCarthage.h */,
+				E71F98001F1E567200D263F1 /* Info.plist */,
+			);
+			path = AACarouselCarthage;
+			sourceTree = "<group>";
+		};
 		E7BD5B511EED24420099D276 = {
 			isa = PBXGroup;
 			children = (
 				E7BD5B5C1EED24420099D276 /* AACarousel */,
+				E71F97FE1F1E567200D263F1 /* AACarouselCarthage */,
 				E7BD5B5B1EED24420099D276 /* Products */,
 				46DA8A20C6FD006860F72D7C /* Pods */,
 				B20986F50FD029EE8DAAF6A9 /* Frameworks */,
@@ -77,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				E7BD5B5A1EED24420099D276 /* AACarousel.app */,
+				E71F97FD1F1E567200D263F1 /* AACarousel.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,7 +147,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E71F97FA1F1E567200D263F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E71F98011F1E567200D263F1 /* AACarouselCarthage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		E71F97FC1F1E567200D263F1 /* AACarouselCarthage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E71F98081F1E567200D263F1 /* Build configuration list for PBXNativeTarget "AACarouselCarthage" */;
+			buildPhases = (
+				E71F97F81F1E567200D263F1 /* Sources */,
+				E71F97F91F1E567200D263F1 /* Frameworks */,
+				E71F97FA1F1E567200D263F1 /* Headers */,
+				E71F97FB1F1E567200D263F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AACarouselCarthage;
+			productName = AACarouselCarthage;
+			productReference = E71F97FD1F1E567200D263F1 /* AACarousel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		E7BD5B591EED24420099D276 /* AACarousel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7BD5B6C1EED24420099D276 /* Build configuration list for PBXNativeTarget "AACarousel" */;
@@ -108,10 +187,12 @@
 				E7BD5B581EED24420099D276 /* Resources */,
 				1215121B72757107402316C6 /* [CP] Embed Pods Frameworks */,
 				319E7FA41644F3D934CEE248 /* [CP] Copy Pods Resources */,
+				E71F98091F1E567200D263F1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E71F98031F1E567200D263F1 /* PBXTargetDependency */,
 			);
 			name = AACarousel;
 			productName = AACarousel;
@@ -128,6 +209,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Alan;
 				TargetAttributes = {
+					E71F97FC1F1E567200D263F1 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2597VT3R93;
+						ProvisioningStyle = Automatic;
+					};
 					E7BD5B591EED24420099D276 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 2597VT3R93;
@@ -149,11 +235,19 @@
 			projectRoot = "";
 			targets = (
 				E7BD5B591EED24420099D276 /* AACarousel */,
+				E71F97FC1F1E567200D263F1 /* AACarouselCarthage */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E71F97FB1F1E567200D263F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7BD5B581EED24420099D276 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +309,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E71F97F81F1E567200D263F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E71F980A1F1E567D00D263F1 /* AACarousel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7BD5B561EED24420099D276 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +328,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E71F98031F1E567200D263F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E71F97FC1F1E567200D263F1 /* AACarouselCarthage */;
+			targetProxy = E71F98021F1E567200D263F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E7BD5B611EED24420099D276 /* Main.storyboard */ = {
@@ -247,6 +357,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E71F98061F1E567200D263F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2597VT3R93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AACarouselCarthage/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.AACarouselCarthage;
+				PRODUCT_NAME = AACarousel;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E71F98071F1E567200D263F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2597VT3R93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = AACarouselCarthage/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.swift.AACarouselCarthage;
+				PRODUCT_NAME = AACarousel;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E7BD5B6A1EED24420099D276 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -346,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 33268D856381BF7CA9E52598 /* Pods-AACarousel.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2597VT3R93;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -365,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F8BE8B1450D07C400ABF14A /* Pods-AACarousel.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2597VT3R93;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -383,6 +541,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E71F98081F1E567200D263F1 /* Build configuration list for PBXNativeTarget "AACarouselCarthage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E71F98061F1E567200D263F1 /* Debug */,
+				E71F98071F1E567200D263F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E7BD5B551EED24420099D276 /* Build configuration list for PBXProject "AACarousel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
