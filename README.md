@@ -1,6 +1,7 @@
 # AACarousel
 
 ![](https://img.shields.io/cocoapods/v/AACarousel.svg?style=flat)
+![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)
 
 #### Easy to create image slider in Swift
 
