@@ -1,5 +1,7 @@
 # AACarousel
 
+![](https://img.shields.io/cocoapods/v/AACarousel.svg?style=flat)
+
 #### Easy to create image slider in Swift
 
 
