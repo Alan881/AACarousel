@@ -18,15 +18,15 @@ let needDownload = "http"
 
 public class AACarousel: UIView,UIScrollViewDelegate {
     
-    var delegate:AACarouselDelegate?
-    var images = [UIImage]()
-    enum direction: Int {
+    public var delegate:AACarouselDelegate?
+    public var images = [UIImage]()
+    public enum direction: Int {
         case left = -1, none, right
     }
-    enum pageControlPosition:Int {
+    public enum pageControlPosition:Int {
         case top = 0, center = 1, bottom = 2, topLeft = 3, bottomLeft = 4, topRight = 5, bottomRight = 6
     }
-    enum displayModel:Int {
+    public enum displayModel:Int {
         case full = 0, halfFull = 1
     }
     //MARK:- private property
