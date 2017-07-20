@@ -45,7 +45,7 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     private var indicatorPosition:pageControlPosition = pageControlPosition.bottom
     private var carouselMode:displayModel = displayModel.full
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         
         initWithScrollView()
