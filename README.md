@@ -48,7 +48,7 @@ github "Alan881/AACarousel"
 Enter command instruction into your terminal.
 
 ```
-carthage update
+carthage update --platform iOS
 ```
 
 # Usage
