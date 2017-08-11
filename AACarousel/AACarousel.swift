@@ -448,7 +448,9 @@ public class AACarousel: UIView,UIScrollViewDelegate {
         
         if let delegate = delegate {
             if let method = delegate.didSelectCarouselView {
-                method(self, currentIndex)
+                if currentIndex != nil {
+                    method(self, currentIndex)
+                }
                 return
             }
         }
