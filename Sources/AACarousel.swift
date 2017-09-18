@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol AACarouselDelegate {
+@objc public protocol AACarouselDelegate {
     @objc optional func didSelectCarouselView(_ view:AACarousel, _ index:Int)
     @objc optional func callBackFirstDisplayView(_ imageView:UIImageView, _ url:[String], _ index:Int)
     func downloadImages(_ url:String, _ index:Int)
@@ -16,17 +16,17 @@ import UIKit
 
 let needDownload = "http"
 
-class AACarousel: UIView,UIScrollViewDelegate {
+public class AACarousel: UIView,UIScrollViewDelegate {
     
-    var delegate:AACarouselDelegate?
-    var images = [UIImage]()
-    enum direction: Int {
+    public var delegate:AACarouselDelegate?
+    public var images = [UIImage]()
+    public enum direction: Int {
         case left = -1, none, right
     }
-    enum pageControlPosition:Int {
+    public enum pageControlPosition:Int {
         case top = 0, center = 1, bottom = 2, topLeft = 3, bottomLeft = 4, topRight = 5, bottomRight = 6
     }
-    enum displayModel:Int {
+    public enum displayModel:Int {
         case full = 0, halfFull = 1
     }
     //MARK:- private property
@@ -45,7 +45,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     private var indicatorPosition:pageControlPosition = pageControlPosition.bottom
     private var carouselMode:displayModel = displayModel.full
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         
         initWithScrollView()
@@ -58,7 +58,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
         
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         setScrollViewFrame()
@@ -71,7 +71,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     //MARK:- Interface Builder(Xib,StoryBoard)
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         
         initWithScrollView()
@@ -83,7 +83,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
         setNeedsDisplay()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         //fatalError("init(coder:) has not been implemented")
     }
@@ -254,7 +254,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     //MARK:- set subviews layout method
-    func setCarouselLayout(displayStyle:Int, pageIndicatorPositon:Int, pageIndicatorColor:UIColor?, describedTitleColor:UIColor?, layerColor:UIColor?) {
+    public func setCarouselLayout(displayStyle:Int, pageIndicatorPositon:Int, pageIndicatorColor:UIColor?, describedTitleColor:UIColor?, layerColor:UIColor?) {
         
         carouselMode = displayModel.init(rawValue: displayStyle) ?? .full
         indicatorPosition = pageControlPosition.init(rawValue: pageIndicatorPositon) ?? .bottom
@@ -265,7 +265,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     //MARK:- set subviews show method
-    func setCarouselOpaque(layer:Bool, describedTitle:Bool, pageIndicator:Bool) {
+    public func setCarouselOpaque(layer:Bool, describedTitle:Bool, pageIndicator:Bool) {
         
         layerView.isHidden = layer
         describedLabel.isHidden = describedTitle
@@ -274,7 +274,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     
     //MARK:- set data method
-    func setCarouselData(paths:[String],describedTitle:[String],isAutoScroll:Bool,timer:Double?,defaultImage:String?) {
+    public func setCarouselData(paths:[String],describedTitle:[String],isAutoScroll:Bool,timer:Double?,defaultImage:String?) {
         
         if paths.count == 0 {
             return
@@ -458,7 +458,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     
     //MARK:- UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if images.count == 0  {
             return
@@ -479,7 +479,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
         
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         switch carouselMode {
         case .full:
@@ -492,7 +492,7 @@ class AACarousel: UIView,UIScrollViewDelegate {
     }
     
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         startAutoScroll()
         
@@ -546,12 +546,12 @@ class AACarousel: UIView,UIScrollViewDelegate {
     
     
     //MARK:- public control method
-    func startScrollImageView() {
+    public func startScrollImageView() {
         
         startAutoScroll()
     }
     
-    func stopScrollImageView() {
+    public func stopScrollImageView() {
         
         stopAutoScroll()
     }
