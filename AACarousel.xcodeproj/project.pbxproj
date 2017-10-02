@@ -11,7 +11,7 @@
 		E71F98011F1E567200D263F1 /* AACarouselCarthage.h in Headers */ = {isa = PBXBuildFile; fileRef = E71F97FF1F1E567200D263F1 /* AACarouselCarthage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E71F98041F1E567200D263F1 /* AACarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71F97FD1F1E567200D263F1 /* AACarousel.framework */; };
 		E71F98051F1E567200D263F1 /* AACarousel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E71F97FD1F1E567200D263F1 /* AACarousel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E71F980A1F1E567D00D263F1 /* AACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD9FBC1EED3FBD00A57E46 /* AACarousel.swift */; };
+		E76E3B3D1F81F16100E69BE2 /* AACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD9FBC1EED3FBD00A57E46 /* AACarousel.swift */; };
 		E7BD5B5E1EED24420099D276 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BD5B5D1EED24420099D276 /* AppDelegate.swift */; };
 		E7BD5B601EED24420099D276 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BD5B5F1EED24420099D276 /* ViewController.swift */; };
 		E7BD5B631EED24420099D276 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7BD5B611EED24420099D276 /* Main.storyboard */; };
@@ -205,7 +205,7 @@
 		E7BD5B521EED24420099D276 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Alan;
 				TargetAttributes = {
@@ -216,6 +216,7 @@
 					E7BD5B591EED24420099D276 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 2597VT3R93;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -266,9 +267,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AACarousel/Pods-AACarousel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -296,13 +300,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AACarousel-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -312,7 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71F980A1F1E567D00D263F1 /* AACarousel.swift in Sources */,
+				E76E3B3D1F81F16100E69BE2 /* AACarousel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +380,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.swift.AACarousel;
 				PRODUCT_NAME = AACarousel;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -396,7 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.swift.AACarousel;
 				PRODUCT_NAME = AACarousel;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -503,6 +510,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2597VT3R93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,7 +521,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftTool.AACarousel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -523,6 +532,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 2597VT3R93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +543,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiftTool.AACarousel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

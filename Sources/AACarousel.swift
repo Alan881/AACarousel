@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc public protocol AACarouselDelegate {
-    @objc optional func didSelectCarouselView(_ view:AACarousel, _ index:Int)
-    @objc optional func callBackFirstDisplayView(_ imageView:UIImageView, _ url:[String], _ index:Int)
+public protocol AACarouselDelegate {
+    func didSelectCarouselView(_ view:AACarousel, _ index:Int)
+    func callBackFirstDisplayView(_ imageView:UIImageView, _ url:[String], _ index:Int)
     func downloadImages(_ url:String, _ index:Int)
 }
 
@@ -149,9 +149,9 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     
     fileprivate func initWithGestureRecognizer() {
         
-        let singleFinger = UITapGestureRecognizer(target:self, action:#selector(didSelectImageView))
-        addGestureRecognizer(singleFinger)
+        let singleFinger = UITapGestureRecognizer(target: self, action: #selector(didSelectImageView(_:)))
         
+        addGestureRecognizer(singleFinger)
     }
     
     fileprivate func initWithData(_ paths:[String],_ describedTitle:[String]) {
@@ -332,12 +332,7 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     
     fileprivate func handleFirstImageView(_ imageView:UIImageView,_ imageUrl:[String], _ curIndex:NSInteger) {
         
-        if let delegate = delegate {
-            if let method = delegate.callBackFirstDisplayView {
-                method(imageView, imageUrl, curIndex)
-                return
-            }
-        }
+        delegate?.callBackFirstDisplayView(imageView, imageUrl, curIndex)
     }
     
     fileprivate func setLabel(_ describedTitle:[String], _ curIndex:NSInteger) {
@@ -444,16 +439,9 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     
     
     //MARK:- UITapGestureRecognizer
-    @objc fileprivate func didSelectImageView() {
+    @objc fileprivate func didSelectImageView(_ sender: UITapGestureRecognizer) {
         
-        if let delegate = delegate {
-            if let method = delegate.didSelectCarouselView {
-                if currentIndex != nil {
-                    method(self, currentIndex)
-                }
-                return
-            }
-        }
+        delegate?.didSelectCarouselView(self, currentIndex)
     }
     
     
@@ -558,4 +546,13 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     
     
     
+}
+
+extension AACarouselDelegate {
+    
+    func didSelectCarouselView(_ view:AACarousel, _ index:Int) {
+    }
+    
+    func callBackFirstDisplayView(_ imageView:UIImageView, _ url:[String], _ index:Int) {
+    }
 }
