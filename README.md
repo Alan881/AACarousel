@@ -24,7 +24,7 @@
 
 #### CocoaPods
 
-AACarousel is available through [CocoaPods](http://cocoapods.org).
+AACarousel is available through [CocoaPods](https://cocoapods.org/pods/AACarousel).
 
 Simply add AACarousel to your `Podfile`.
 
