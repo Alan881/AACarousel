@@ -15,7 +15,7 @@
 
 #### Style One
 
-![](./sampleImage/imageSlider.gif)
+![](https://github.com/Alan881/AACarousel/tree/master/sampleImage/imageSlider.gif)
 #### Style Two
 
 ![](./sampleImage/halfImageSlider.gif)
