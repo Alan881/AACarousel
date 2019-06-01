@@ -12,6 +12,8 @@ public protocol AACarouselDelegate {
    func didSelectCarouselView(_ view:AACarousel, _ index:Int)
    func callBackFirstDisplayView(_ imageView:UIImageView, _ url:[String], _ index:Int)
    func downloadImages(_ url:String, _ index:Int)
+    func indexChanged(index: Int)
+    func autoScrollEnabled() -> Bool
 }
 
 let needDownload = "http"
@@ -481,9 +483,9 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     
     
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-       
-        startAutoScroll()
-        
+        if self.delegate?.autoScrollEnabled() ?? true {
+            startAutoScroll()
+        }
     }
     
     //MARK:- handle scroll imageview frame
@@ -524,6 +526,7 @@ public class AACarousel: UIView,UIScrollViewDelegate {
             break
         }
         pageControl.currentPage = currentIndex
+        self.delegate?.indexChanged(index: currentIndex)
     }
     
     //MARK:- download all images
