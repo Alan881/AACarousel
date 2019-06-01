@@ -9,13 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController,AACarouselDelegate {
-    func indexChanged(index: Int) {
-        
-    }
-    
-    func autoScrollEnabled() -> Bool {
-        return false
-    }
     
     @IBOutlet weak var carouselView: AACarousel!
     var titleArray = [String]()
@@ -34,7 +27,6 @@ class ViewController: UIViewController,AACarouselDelegate {
         //optional method
         carouselView.setCarouselOpaque(layer: false, describedTitle: false, pageIndicator: false)
         carouselView.setCarouselLayout(displayStyle: 0, pageIndicatorPositon: 2, pageIndicatorColor: nil, describedTitleColor: nil, layerColor: nil)
-        carouselView.stopScrollImageView()
     }
     
     //require method
@@ -62,6 +54,14 @@ class ViewController: UIViewController,AACarouselDelegate {
         
         imageView.kf.setImage(with: URL(string: url[index]), placeholder: UIImage.init(named: "defaultImage"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
         
+    }
+    
+    func indexChanged(index: Int) {
+        print("Current index \(index)")
+    }
+    
+    func autoScrollEnabled() -> Bool {
+        return true
     }
     
     func startAutoScroll() {
