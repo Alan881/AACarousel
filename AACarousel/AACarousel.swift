@@ -440,7 +440,9 @@ public class AACarousel: UIView,UIScrollViewDelegate {
     
     //MARK:- UITapGestureRecognizer
     @objc fileprivate func didSelectImageView(_ sender: UITapGestureRecognizer) {
-        
+        guard let currentIndex = currentIndex else {
+            return
+        }
         delegate?.didSelectCarouselView(self, currentIndex)
     }
     
